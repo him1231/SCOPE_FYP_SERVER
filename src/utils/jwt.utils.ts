@@ -25,8 +25,6 @@ export function verifyJwt(
     'ascii'
   );
 
-  console.log({ token });
-
   try {
     const decoded = jwt.verify(token, publicKey);
     return {
