@@ -13,3 +13,8 @@ export async function createAgencies(inputs: AgencyInput[]) {
 
   return result;
 }
+
+export async function getAllAgencies() {
+  const result = await AgencyModel.find();
+  return result;
+}

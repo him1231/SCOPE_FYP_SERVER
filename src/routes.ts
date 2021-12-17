@@ -8,6 +8,7 @@ import {
   updateProductHandler,
   deleteProductHandler,
 } from './controller/product.controller';
+import { updateRoutesHandler } from './controller/route.controller';
 import {
   createUserSessionHandler,
   getUserSessionsHandler,
@@ -29,6 +30,7 @@ function routes(app: Express) {
   app.get('/updateAgencies', updateAgenciesHandler);
   app.get('/updateCalendars', updateCalendarsHandler);
   app.get('/updateCalendarDates', updateCalendarDatesHandler);
+  app.get('/updateRoutes', updateRoutesHandler);
 
   /**
    * @openapi
