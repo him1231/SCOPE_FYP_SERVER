@@ -13,3 +13,8 @@ export async function createCalendars(inputs: CalendarInput[]) {
 
   return result;
 }
+
+export async function getAllCalendars() {
+  const result = await CalendarModel.find();
+  return result;
+}

@@ -1,8 +1,9 @@
 import mongoose from 'mongoose';
+import { CalendarDocument } from './calendar.model';
 
 export interface CalendarDateInput {
   key: string;
-  serviceId: string;
+  calendar: CalendarDocument['_id'];
   date: string;
   exceptionType: string;
 }
@@ -17,8 +18,8 @@ export interface CalendarDateDocument
 const calendarDateSchema = new mongoose.Schema(
   {
     key: { type: String, unique: true },
+    calendar: { type: mongoose.Schema.Types.ObjectId, ref: 'Calendar' },
     date: { type: String },
-    serviceId: { type: String },
     exceptionType: { type: String },
   },
   {
