@@ -1,7 +1,7 @@
 import AgencyModel, { AgencyInput } from '../models/agency.model';
 
-export async function createAgencys(inputs: AgencyInput[]) {
-  const agencys = await AgencyModel.bulkWrite(
+export async function createAgencies(inputs: AgencyInput[]) {
+  const result = await AgencyModel.bulkWrite(
     inputs.map((item) => ({
       updateOne: {
         filter: { key: item.key },
@@ -11,5 +11,5 @@ export async function createAgencys(inputs: AgencyInput[]) {
     }))
   );
 
-  return agencys;
+  return result;
 }

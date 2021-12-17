@@ -1,5 +1,5 @@
 import { Express, Request, Response } from 'express';
-import { updateAgencysHandler } from './controller/agency.controller';
+import { updateAgenciesHandler } from './controller/agency.controller';
 import {
   createProductHandler,
   getProductHandler,
@@ -24,7 +24,7 @@ import { createSessionSchema } from './schema/session.schema';
 import { createUserSchema } from './schema/user.schema';
 
 function routes(app: Express) {
-  app.get('/updateAgency', updateAgencysHandler);
+  app.get('/updateAgency', updateAgenciesHandler);
 
   /**
    * @openapi

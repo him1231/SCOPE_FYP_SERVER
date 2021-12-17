@@ -1,10 +1,9 @@
 import { Request, Response } from 'express';
 import axios, { AxiosResponse } from 'axios';
-import { createAgencys } from '../service/agency.service';
+import { createAgencies } from '../service/agency.service';
 import { AgencyInput } from '../models/agency.model';
-import { values } from 'lodash';
 
-export async function updateAgencysHandler(req: Request, res: Response) {
+export async function updateAgenciesHandler(req: Request, res: Response) {
   try {
     const API_AGENCY_DATA =
       'https://static.data.gov.hk/td/pt-headway-en/agency.txt';
@@ -25,7 +24,7 @@ export async function updateAgencysHandler(req: Request, res: Response) {
         };
       });
 
-    const result = await createAgencys(data);
+    const result = await createAgencies(data);
 
     return res.send({ status: 'success', result });
   } catch (error) {
