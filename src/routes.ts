@@ -1,6 +1,7 @@
 import { Express, Request, Response } from 'express';
 import { updateAgenciesHandler } from './controller/agency.controller';
 import { updateCalendarsHandler } from './controller/calendar.controller';
+import { updateCalendarDatesHandler } from './controller/calendarDate.controller';
 import {
   createProductHandler,
   getProductHandler,
@@ -27,6 +28,7 @@ import { createUserSchema } from './schema/user.schema';
 function routes(app: Express) {
   app.get('/updateAgencies', updateAgenciesHandler);
   app.get('/updateCalendars', updateCalendarsHandler);
+  app.get('/updateCalendarDates', updateCalendarDatesHandler);
 
   /**
    * @openapi
