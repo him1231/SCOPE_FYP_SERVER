@@ -14,6 +14,7 @@ import {
   getUserSessionsHandler,
   deleteSessionHandler,
 } from './controller/session.controller';
+import { updateStopsHandler } from './controller/stop.controller';
 import { createUserHandler } from './controller/user.controller';
 import requireUser from './middleware/requireUser';
 import validateResource from './middleware/validateResource';
@@ -31,6 +32,7 @@ function routes(app: Express) {
   app.get('/updateCalendars', updateCalendarsHandler);
   app.get('/updateCalendarDates', updateCalendarDatesHandler);
   app.get('/updateRoutes', updateRoutesHandler);
+  app.get('/updateStops', updateStopsHandler);
 
   /**
    * @openapi
