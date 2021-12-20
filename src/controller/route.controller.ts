@@ -15,6 +15,14 @@ export async function updateRoutesHandler(req: Request, res: Response) {
 
     const data: RouteInput[] = (apiResult.data as string)
       .split('\r\n')
+      .map((item) => item.split('"'))
+      .map((item) => {
+        if (item.length === 3) {
+          return [item[0], item[1].split(',').join(';'), item[2]].join('"');
+        } else {
+          return item.join('"');
+        }
+      })
       .map((item) => item.split(','))
       .filter((values, index) => values.length === 6 && index !== 0)
       .map((values) => {
