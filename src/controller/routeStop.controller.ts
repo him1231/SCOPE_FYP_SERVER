@@ -27,6 +27,7 @@ export async function updateRouteStopsHandler(req: Request, res: Response) {
         dataMap[key1] = {
           key: key1,
           route: routes[values[1]],
+          bound: fareId[1],
           seq: Number(fareId[2]),
           stop: stops[values[2]],
         };
@@ -35,6 +36,7 @@ export async function updateRouteStopsHandler(req: Request, res: Response) {
         dataMap[key2] = {
           key: key2,
           route: routes[values[1]],
+          bound: fareId[1],
           seq: Number(fareId[3]),
           stop: stops[values[3]],
         };
