@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
 import axios, { AxiosResponse } from 'axios';
-import { getAllAgencies, getAllAgenciesID } from '../service/agency.service';
-import { getAllRoutes, getAllRoutesID } from '../service/route.service';
-import { getAllStops, getAllStopsID } from '../service/stop.service';
+import { getAllAgenciesID } from '../service/agency.service';
+import { getAllRoutesID } from '../service/route.service';
+import { getAllStopsID } from '../service/stop.service';
 import { createFares } from '../service/fare.service';
 import { FareInput } from '../models/fare.model';
 
@@ -52,7 +52,7 @@ export async function updateFaresHandler(req: Request, res: Response) {
         dataMap[item[0]]['destinationStop'] = stops[item[3]];
       });
 
-    const data = Object.entries(dataMap).map(([key, item]) => item);
+    const data = Object.values(dataMap);
 
     const result = await createFares(data);
 

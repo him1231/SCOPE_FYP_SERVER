@@ -40,7 +40,7 @@ export async function updateRouteStopsHandler(req: Request, res: Response) {
         };
       });
 
-    const data = Object.entries(dataMap).map(([key, item]) => item);
+    const data = Object.values(dataMap);
 
     const result = await createRouteStops(data);
 
