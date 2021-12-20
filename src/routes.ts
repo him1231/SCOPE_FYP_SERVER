@@ -2,6 +2,7 @@ import { Express, Request, Response } from 'express';
 import { updateAgenciesHandler } from './controller/agency.controller';
 import { updateCalendarsHandler } from './controller/calendar.controller';
 import { updateCalendarDatesHandler } from './controller/calendarDate.controller';
+import { updateFaresHandler } from './controller/fare.controller';
 import {
   createProductHandler,
   getProductHandler,
@@ -33,6 +34,7 @@ function routes(app: Express) {
   app.get('/updateCalendarDates', updateCalendarDatesHandler);
   app.get('/updateRoutes', updateRoutesHandler);
   app.get('/updateStops', updateStopsHandler);
+  app.get('/updateFares', updateFaresHandler);
 
   /**
    * @openapi

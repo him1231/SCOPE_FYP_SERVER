@@ -18,3 +18,15 @@ export async function getAllAgencies() {
   const result = await AgencyModel.find();
   return result;
 }
+
+export async function getAllAgenciesID() {
+  var AgenciesMap: { [key: string]: any } = {};
+
+  const result = await AgencyModel.find();
+
+  result.forEach(function (agency) {
+    AgenciesMap[agency.key] = agency._id;
+  });
+
+  return AgenciesMap;
+}
