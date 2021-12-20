@@ -10,6 +10,7 @@ import {
   deleteProductHandler,
 } from './controller/product.controller';
 import { updateRoutesHandler } from './controller/route.controller';
+import { updateRouteStopsHandler } from './controller/routeStop.controller';
 import {
   createUserSessionHandler,
   getUserSessionsHandler,
@@ -35,6 +36,7 @@ function routes(app: Express) {
   app.get('/updateRoutes', updateRoutesHandler);
   app.get('/updateStops', updateStopsHandler);
   app.get('/updateFares', updateFaresHandler);
+  app.get('/updateRouteStops', updateRouteStopsHandler);
 
   /**
    * @openapi
