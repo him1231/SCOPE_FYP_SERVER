@@ -12,17 +12,23 @@ export async function updateStopsHandler(req: Request, res: Response) {
 
     const data: StopInput[] = (apiResult.data as string)
       .split('\r\n')
-      .map((item) => item.split(','))
+      .map((item) => item.split(',22.'))
+      .filter((item) => item.length === 2)
+      .map((item) => {
+        const arr1 = item[0].split(',');
+        const first = arr1.shift();
+        return [first, arr1.join(','), ...`22.${item[1]}`.split(',')];
+      })
       .filter((values, index) => values.length === 7 && index !== 0)
       .map((values) => {
         return {
-          stopId: values[0],
-          name: values[1],
+          stopId: values[0] ?? '',
+          name: values[1] ?? '',
           lat: Number(values[2]),
           lon: Number(values[3]),
-          zoneId: values[4],
-          locationType: values[5],
-          timezone: values[6],
+          zoneId: values[4] ?? '',
+          locationType: values[5] ?? '',
+          timezone: values[6] ?? '',
         };
       });
 
