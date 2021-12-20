@@ -3,7 +3,7 @@ export default {
   dbUri:
     'mongodb+srv://dbUser:dbUserPassword@cluster0.rpqqn.mongodb.net/SCOPE_FYP_DB?retryWrites=true&w=majority',
   saltWorkFactor: 10,
-  accessTokenTtl: '15m',
+  accessTokenTtl: '1y',
   refreshTokenTtl: '1y',
   accessTokenPrivateKey: ``,
   accessTokenPublicKey: ``,
