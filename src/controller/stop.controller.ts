@@ -19,7 +19,7 @@ export async function updateStopsHandler(req: Request, res: Response) {
         const first = arr1.shift();
         return [first, arr1.join(','), ...`22.${item[1]}`.split(',')];
       })
-      .filter((values, index) => values.length === 7 && index !== 0)
+      .filter((values, index) => values.length === 7)
       .map((values) => {
         return {
           stopId: values[0] ?? '',
