@@ -15,8 +15,15 @@ export async function createRoutes(inputs: RouteInput[]) {
 }
 
 export async function getAllRoutes() {
+  var itemMap: { [key: string]: RouteInput } = {};
+
   const result = await routeModel.find();
-  return result;
+
+  result.forEach(function (item) {
+    itemMap[item._id] = item;
+  });
+
+  return itemMap;
 }
 
 export async function getAllRoutesID() {

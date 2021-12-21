@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import axios, { AxiosResponse } from 'axios';
 import { StopInput } from '../models/stop.model';
-import { createStops } from '../service/stop.service';
+import { createStops, getAllStops } from '../service/stop.service';
 
 export async function updateStopsHandler(req: Request, res: Response) {
   try {
@@ -35,6 +35,15 @@ export async function updateStopsHandler(req: Request, res: Response) {
     const result = await createStops(data);
 
     return res.send({ status: 'success', result });
+  } catch (error) {
+    return res.send({ status: 'error', error });
+  }
+}
+
+export async function getStopsHandler(req: Request, res: Response) {
+  try {
+    const data = await getAllStops();
+    return res.send({ status: 'success', data: Object.values(data) });
   } catch (error) {
     return res.send({ status: 'error', error });
   }

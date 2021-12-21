@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import axios, { AxiosResponse } from 'axios';
 import { getAllAgencies } from '../service/agency.service';
-import { createRoutes } from '../service/route.service';
+import { createRoutes, getAllRoutes } from '../service/route.service';
 import { RouteInput } from '../models/route.model';
 
 export async function updateRoutesHandler(req: Request, res: Response) {
@@ -39,6 +39,15 @@ export async function updateRoutesHandler(req: Request, res: Response) {
     const result = await createRoutes(data);
 
     return res.send({ status: 'success', result });
+  } catch (error) {
+    return res.send({ status: 'error', error });
+  }
+}
+
+export async function getRoutesHandler(req: Request, res: Response) {
+  try {
+    const data = await getAllRoutes();
+    return res.send({ status: 'success', data: Object.values(data) });
   } catch (error) {
     return res.send({ status: 'error', error });
   }

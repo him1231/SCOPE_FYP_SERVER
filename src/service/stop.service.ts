@@ -15,8 +15,15 @@ export async function createStops(inputs: StopInput[]) {
 }
 
 export async function getAllStops() {
+  var itemMap: { [key: string]: StopInput } = {};
+
   const result = await StopModel.find();
-  return result;
+
+  result.forEach(function (item) {
+    itemMap[item._id] = item;
+  });
+
+  return itemMap;
 }
 
 export async function getAllStopsID() {

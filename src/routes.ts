@@ -4,19 +4,29 @@ import { updateCalendarsHandler } from './controller/calendar.controller';
 import { updateCalendarDatesHandler } from './controller/calendarDate.controller';
 import { updateFaresHandler } from './controller/fare.controller';
 import {
+  getNodesHandler,
+  updateNodesHandler,
+} from './controller/node.controller';
+import {
   createProductHandler,
   getProductHandler,
   updateProductHandler,
   deleteProductHandler,
 } from './controller/product.controller';
-import { updateRoutesHandler } from './controller/route.controller';
+import {
+  getRoutesHandler,
+  updateRoutesHandler,
+} from './controller/route.controller';
 import { updateRouteStopsHandler } from './controller/routeStop.controller';
 import {
   createUserSessionHandler,
   getUserSessionsHandler,
   deleteSessionHandler,
 } from './controller/session.controller';
-import { updateStopsHandler } from './controller/stop.controller';
+import {
+  updateStopsHandler,
+  getStopsHandler,
+} from './controller/stop.controller';
 import { createUserHandler } from './controller/user.controller';
 import requireUser from './middleware/requireUser';
 import validateResource from './middleware/validateResource';
@@ -37,6 +47,11 @@ function routes(app: Express) {
   app.get('/updateStops', updateStopsHandler);
   app.get('/updateFares', updateFaresHandler);
   app.get('/updateRouteStops', updateRouteStopsHandler);
+  app.get('/updateNodes', updateNodesHandler);
+
+  app.get('/getNodes', getNodesHandler);
+  app.get('/getStops', getStopsHandler);
+  app.get('/getRoutes', getRoutesHandler);
 
   /**
    * @openapi
