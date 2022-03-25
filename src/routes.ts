@@ -1,8 +1,8 @@
-import { Express, Request, Response } from 'express';
-import { updateAgenciesHandler } from './controller/agency.controller';
-import { updateCalendarsHandler } from './controller/calendar.controller';
-import { updateCalendarDatesHandler } from './controller/calendarDate.controller';
-import { updateFaresHandler } from './controller/fare.controller';
+import {Express, Request, Response} from 'express';
+import {updateAgenciesHandler} from './controller/agency.controller';
+import {updateCalendarsHandler} from './controller/calendar.controller';
+import {updateCalendarDatesHandler} from './controller/calendarDate.controller';
+import {updateFaresHandler} from './controller/fare.controller';
 import {
   getNodesHandler,
   updateNodesHandler,
@@ -17,7 +17,10 @@ import {
   getRoutesHandler,
   updateRoutesHandler,
 } from './controller/route.controller';
-import { updateRouteStopsHandler } from './controller/routeStop.controller';
+import {
+  getRouteStopsHandler,
+  updateRouteStopsHandler,
+} from './controller/routeStop.controller';
 import {
   createUserSessionHandler,
   getUserSessionsHandler,
@@ -27,7 +30,7 @@ import {
   updateStopsHandler,
   getStopsHandler,
 } from './controller/stop.controller';
-import { createUserHandler } from './controller/user.controller';
+import {createUserHandler} from './controller/user.controller';
 import requireUser from './middleware/requireUser';
 import validateResource from './middleware/validateResource';
 import {
@@ -36,8 +39,8 @@ import {
   getProductSchema,
   updateProductSchema,
 } from './schema/product.schema';
-import { createSessionSchema } from './schema/session.schema';
-import { createUserSchema } from './schema/user.schema';
+import {createSessionSchema} from './schema/session.schema';
+import {createUserSchema} from './schema/user.schema';
 
 function routes(app: Express) {
   app.get('/updateAgencies', updateAgenciesHandler);
@@ -52,6 +55,7 @@ function routes(app: Express) {
   app.get('/getNodes', getNodesHandler);
   app.get('/getStops', getStopsHandler);
   app.get('/getRoutes', getRoutesHandler);
+  app.get('/getRouteStops', getRouteStopsHandler);
 
   /**
    * @openapi
@@ -96,7 +100,7 @@ function routes(app: Express) {
   app.post(
     '/api/sessions',
     validateResource(createSessionSchema),
-    createUserSessionHandler
+    createUserSessionHandler,
   );
 
   app.get('/api/sessions', requireUser, getUserSessionsHandler);
@@ -106,7 +110,7 @@ function routes(app: Express) {
   app.post(
     '/api/products',
     [requireUser, validateResource(createProductSchema)],
-    createProductHandler
+    createProductHandler,
   );
 
   /**
@@ -134,19 +138,19 @@ function routes(app: Express) {
   app.put(
     '/api/products/:productId',
     [requireUser, validateResource(updateProductSchema)],
-    updateProductHandler
+    updateProductHandler,
   );
 
   app.get(
     '/api/products/:productId',
     validateResource(getProductSchema),
-    getProductHandler
+    getProductHandler,
   );
 
   app.delete(
     '/api/products/:productId',
     [requireUser, validateResource(deleteProductSchema)],
-    deleteProductHandler
+    deleteProductHandler,
   );
 }
 

@@ -1,9 +1,12 @@
-import axios, { AxiosResponse } from 'axios';
-import { Request, Response } from 'express';
-import { RouteStopInput } from '../models/routeStop.model';
-import { getAllRoutesID } from '../service/route.service';
-import { createRouteStops } from '../service/routeStop.service';
-import { getAllStopsID } from '../service/stop.service';
+import axios, {AxiosResponse} from 'axios';
+import {Request, Response} from 'express';
+import {RouteStopInput} from '../models/routeStop.model';
+import {getAllRoutesID} from '../service/route.service';
+import {
+  createRouteStops,
+  getRouteStopsByRouteID,
+} from '../service/routeStop.service';
+import {getAllStopsID} from '../service/stop.service';
 
 export async function updateRouteStopsHandler(req: Request, res: Response) {
   try {
@@ -15,7 +18,7 @@ export async function updateRouteStopsHandler(req: Request, res: Response) {
 
     let apiResult: AxiosResponse = await axios.get(API_FARE_RULES_DATA);
 
-    const dataMap: { [key: string]: RouteStopInput } = {};
+    const dataMap: {[key: string]: RouteStopInput} = {};
 
     (apiResult.data as string)
       .split('\r\n')
@@ -46,8 +49,17 @@ export async function updateRouteStopsHandler(req: Request, res: Response) {
 
     const result = await createRouteStops(data);
 
-    return res.send({ status: 'success', result });
+    return res.send({status: 'success', result});
   } catch (error) {
-    return res.send({ status: 'error', error });
+    return res.send({status: 'error', error});
+  }
+}
+
+export async function getRouteStopsHandler(req: Request, res: Response) {
+  try {
+    const data = await getRouteStopsByRouteID(req.query.routeId as string);
+    return res.send({status: 'success', data: Object.values(data)});
+  } catch (error) {
+    return res.send({status: 'error', error});
   }
 }
