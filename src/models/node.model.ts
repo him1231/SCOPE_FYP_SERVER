@@ -1,7 +1,12 @@
 import mongoose from 'mongoose';
 
+export type ICostData = {
+  fare?: number | string;
+  walkingDistance?: number | string;
+  travelTime?: number | string;
+};
 export interface RouteNode {
-  [key: string]: string;
+  [key: string]: ICostData;
 }
 
 export interface NodeInput {
@@ -16,12 +21,12 @@ export interface NodeDocument extends NodeInput, mongoose.Document {
 
 const nodeSchema = new mongoose.Schema(
   {
-    key: { type: String, unique: true },
-    value: { type: Object },
+    key: {type: String, unique: true},
+    value: {type: Object},
   },
   {
     timestamps: true,
-  }
+  },
 );
 
 const nodeModel = mongoose.model<NodeDocument>('Node', nodeSchema);
